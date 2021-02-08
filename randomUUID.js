@@ -1,10 +1,42 @@
-const { Buffer } = require('buffer');
-const {randomFillSync} = require('crypto')
+//
+// internal/errors
+//
+class ERR_INVALID_ARG_TYPE extends TypeError
+{
+  code = 'ERR_INVALID_ARG_TYPE'
+}
 
-const {validateBoolean, validateObject} = require('./validators')
+class ERR_OPERATION_FAILED extends TypeError
+{
+  code = 'ERR_OPERATION_FAILED'
+}
 
 
-const secureBuffer = Buffer.alloc
+//
+// internal/validators
+//
+
+function validateBoolean(value, name) {
+  if (typeof value !== 'boolean')
+    throw new ERR_INVALID_ARG_TYPE(name, 'boolean', value);
+}
+
+function validateObject(value, name) {
+  if (value === null ||
+      Array.isArray(value) ||
+      typeof value !== 'object') {
+    throw new ERR_INVALID_ARG_TYPE(name, 'Object', value);
+  }
+};
+
+
+//
+// crypto
+//
+
+const randomFillSync = typeof window === 'undefined'
+  ? require('crypto').randomFillSync
+  : window.crypto.getRandomValues
 
 
 // Implements an RFC 4122 version 4 random UUID.
@@ -26,7 +58,7 @@ let uuidBatch = 0;
 
 function getBufferedUUID() {
   if (uuidData === undefined) {
-    uuidData = secureBuffer(16 * kBatchSize);
+    uuidData = new Uint8Array(16 * kBatchSize);
     if (uuidData === undefined)
       throw new ERR_OPERATION_FAILED('Out of memory');
   }
@@ -46,7 +78,8 @@ function randomUUID(options) {
   validateBoolean(disableEntropyCache, 'options.disableEntropyCache');
 
   if (uuid === undefined) {
-    uuid = Buffer.alloc(36, '-');
+    uuid = new Uint8Array(36);
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-'.charCodeAt(0);
     uuid[14] = 52; // '4', identifies the UUID version
   }
 
@@ -56,7 +89,7 @@ function randomUUID(options) {
   } else {
     uuidBuf = uuidNotBuffered;
     if (uuidBuf === undefined)
-      uuidBuf = uuidNotBuffered = secureBuffer(16);
+      uuidBuf = uuidNotBuffered = new Uint8Array(16);
     if (uuidBuf === undefined)
       throw new ERR_OPERATION_FAILED('Out of memory');
     randomFillSync(uuidBuf);
@@ -107,8 +140,12 @@ function randomUUID(options) {
   uuid[34] = kHexDigits[uuidBuf[n] >> 4];
   uuid[35] = kHexDigits[uuidBuf[n] & 0xf];
 
-  return uuid.latin1Slice(0, 36);
+  return new TextDecoder("latin1").decode(uuid);
 }
 
+
+//
+// Export `randomUUID` function
+//
 
 module.exports = randomUUID
