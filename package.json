@@ -3,14 +3,18 @@
   "version": "0.1.0-alpha.0",
   "description": "Stub project for polyfilling `randomUUID` as proposed for standardization in https://github.com/WICG/uuid and implemented in Node.js v15.6.0 https://github.com/nodejs/node/pull/36729",
   "main": "index.js",
+  "browser": "browser.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "keywords": [
     "uuid",
     "guid",
     "rfc4122"
   ],
-  "author": "",
-  "license": "MIT"
+  "author": "Jesús Leganés-Combarro 'piranna' <piranna@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "^10.0.0"
+  }
 }
