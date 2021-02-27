@@ -5,7 +5,7 @@
   "main": "node.js",
   "browser": "browser.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "jest --coverage --notify"
   },
   "keywords": [
     "uuid",
@@ -16,5 +16,25 @@
   "license": "MIT",
   "engines": {
     "node": "^10.0.0"
+  },
+  "devDependencies": {
+    "jest-cli": "^26.6.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "*.js"
+    ],
+    "projects": [
+      {
+        "displayName": "jsdom",
+        "setupFiles": [
+          "<rootDir>/jsdom/jest.setup.js"
+        ]
+      },
+      {
+        "displayName": "node",
+        "testEnvironment": "node"
+      }
+    ]
   }
 }
