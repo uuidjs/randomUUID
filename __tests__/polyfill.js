@@ -6,5 +6,6 @@ const randomUUID = typeof window === 'undefined'
 
 test('Apply polyfill', function()
 {
-  expect(randomUUID).toBeInstanceOf(Function)
+  // expect(randomUUID).toBeInstanceOf(Function)
+  expect(typeof randomUUID).toBe('function')
 })
