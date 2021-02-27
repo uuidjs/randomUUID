@@ -1,8 +1,8 @@
 require('..')
 
-const randomUUID = typeof window === 'undefined'
-  ? require('crypto').randomUUID
-  : window.crypto.randomUUID
+const {randomUUID} = typeof window === 'undefined'
+  ? require('crypto')
+  : window.crypto
 
 test('Apply polyfill', function()
 {
