@@ -1,3 +1,8 @@
+// Code courtesy of Node's lib/internal/crypto/random.js, subject
+// to Node.js license found at:
+// https://raw.githubusercontent.com/nodejs/node/master/LICENSE
+
+
 //
 // internal/errors
 //
