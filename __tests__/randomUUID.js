@@ -2,12 +2,7 @@
 
 const assert = require('assert');
 
-require('.')
-
-
-const randomUUID = typeof window === 'undefined'
-  ? require('crypto').randomUUID
-  : window.crypto.randomUUID
+const randomUUID = require('../randomUUID');
 
 
 function testMatch(uuid) {
