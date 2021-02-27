@@ -141,7 +141,7 @@ function randomUUID(options) {
   uuid[34] = kHexDigits[uuidBuf[n] >> 4];
   uuid[35] = kHexDigits[uuidBuf[n] & 0xf];
 
-  return new TextDecoder("latin1").decode(uuid);
+  return String.fromCharCode.apply(null, uuid);
 }
 
 
