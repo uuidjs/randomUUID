@@ -64,8 +64,6 @@ let uuidBatch = 0;
 function getBufferedUUID() {
   if (uuidData === undefined) {
     uuidData = new Uint8Array(16 * kBatchSize);
-    if (uuidData === undefined)
-      throw new TypeError('Out of memory');
   }
 
   if (uuidBatch === 0) randomFillSync(uuidData);
@@ -95,8 +93,6 @@ function randomUUID(options) {
     uuidBuf = uuidNotBuffered;
     if (uuidBuf === undefined)
       uuidBuf = uuidNotBuffered = new Uint8Array(16);
-    if (uuidBuf === undefined)
-      throw new TypeError('Out of memory');
     randomFillSync(uuidBuf);
   }
 
