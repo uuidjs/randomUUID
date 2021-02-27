@@ -8,12 +8,12 @@
 //
 class ERR_INVALID_ARG_TYPE extends TypeError
 {
-  code = 'ERR_INVALID_ARG_TYPE'
-}
+  constructor(name, type, value)
+  {
+    super(`${name} variable is not of type ${type} (value: '${value}')`)
+  }
 
-class ERR_OPERATION_FAILED extends TypeError
-{
-  code = 'ERR_OPERATION_FAILED'
+  code = 'ERR_INVALID_ARG_TYPE'
 }
 
 
@@ -65,7 +65,7 @@ function getBufferedUUID() {
   if (uuidData === undefined) {
     uuidData = new Uint8Array(16 * kBatchSize);
     if (uuidData === undefined)
-      throw new ERR_OPERATION_FAILED('Out of memory');
+      throw new TypeError('Out of memory');
   }
 
   if (uuidBatch === 0) randomFillSync(uuidData);
@@ -96,7 +96,7 @@ function randomUUID(options) {
     if (uuidBuf === undefined)
       uuidBuf = uuidNotBuffered = new Uint8Array(16);
     if (uuidBuf === undefined)
-      throw new ERR_OPERATION_FAILED('Out of memory');
+      throw new TypeError('Out of memory');
     randomFillSync(uuidBuf);
   }
 
