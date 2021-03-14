@@ -13,8 +13,6 @@ Require module to polyfill `crypto.randomUUID()` method.
 require('randomuuid')
 ```
 
-it will automatically detect and apply the polyfill functions in place, both in
-Node.js and browser code.
 
 TODO: generate ESM version, so it can be directly importable by browsers, or
 better than that, confirm it's possible to write the polyfill directly on it.
