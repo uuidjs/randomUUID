@@ -1,7 +1,8 @@
 # randomUUID
 
 Stub project for polyfilling `randomUUID` as proposed for standardization in
-https://github.com/WICG/uuid and implemented in
+Polyfill for the `crypto.randomUUID()` method as proposed in
+the [WICG randomUUID specification](https://github.com/WICG/uuid) and recently implemented in
 [Node.js v15.6.0](https://github.com/nodejs/node/pull/36729).
 
 ## Usage
