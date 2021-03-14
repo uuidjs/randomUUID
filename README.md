@@ -23,8 +23,4 @@ See Node.js documentation for
 [randomUUID()](https://nodejs.org/dist/latest-v15.x/docs/api/crypto.html#crypto_crypto_randomuuid_options)
 for API usage.
 
-Code is based on Node.js' `lib/internal/crypto/random.js`, so browser
-implementation (and by extension, Node.js `crypto.webcrypto` too) has some
-Node.js extra functionality that could not be available in future versions of
-the spec, more specifically the `disableEntropyCache` flag. This project intents
-to be keep up to date to the spec once it defines a browser API on itself.
+Note: The current implementation is based on Node.js `lib/internal/crypto/random.js`, however the intent of this project is to follow the spec, so node-specific details (such as the `disableEntropyCache` option) may or may not survive in future versions.
