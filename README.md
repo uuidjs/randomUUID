@@ -6,8 +6,7 @@ https://github.com/WICG/uuid and implemented in
 
 ## Usage
 
-Just `require()` this package as soon as possible in your project, so its
-functionality is available for other modules:
+Require module to polyfill `crypto.randomUUID()` method.
 
 ```js
 require('randomuuid')
