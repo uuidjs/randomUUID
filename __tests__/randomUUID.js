@@ -24,8 +24,6 @@ test("Generate multiple UUIDs", function()
     const uuid = randomUUID();
     assert(!last.has(uuid));
     last.add(uuid);
-    assert.strictEqual(typeof uuid, 'string');
-    assert.strictEqual(uuid.length, 36);
     testMatch(uuid);
 
     // Check that version 4 identifier was populated.
