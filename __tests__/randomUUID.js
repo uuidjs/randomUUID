@@ -32,8 +32,7 @@ test("Generate multiple UUIDs", function()
     assert.strictEqual(uuid.substr(14, 1), '4');
 
     // Check that clock_seq_hi_and_reserved was populated with reserved bits.
-    assert.strictEqual(
-      Buffer.from(uuid.substr(19, 2), 'hex')[0] & 0b1100_0000, 0b1000_0000);
+    assert.match(uuid.substr(19, 1), /[89ab]/);
   }
 })
 
