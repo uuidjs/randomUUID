@@ -14,7 +14,8 @@ require('randomuuid')
 ```
 
 
-NOTE: ESM `import`able version not yet available.  See [this issue](appropriate link) for status.
+NOTE: ESM `import`able version not yet available.  See
+[this issue](https://github.com/uuidjs/randomUUID/issues/2) for status.
 ## API
 
 See Node.js documentation for
