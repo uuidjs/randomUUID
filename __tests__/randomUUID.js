@@ -29,8 +29,7 @@ test("Generate multiple UUIDs", function()
     testMatch(uuid);
 
     // Check that version 4 identifier was populated.
-    assert.strictEqual(
-      Buffer.from(uuid.substr(14, 2), 'hex')[0] & 0x40, 0x40);
+    assert.strictEqual(uuid.substr(14, 1), '4');
 
     // Check that clock_seq_hi_and_reserved was populated with reserved bits.
     assert.strictEqual(
