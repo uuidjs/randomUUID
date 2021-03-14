@@ -14,9 +14,7 @@ require('randomuuid')
 ```
 
 
-TODO: generate ESM version, so it can be directly importable by browsers, or
-better than that, confirm it's possible to write the polyfill directly on it.
-
+NOTE: ESM `import`able version not yet available.  See [this issue](appropriate link) for status.
 ## API
 
 See Node.js documentation for
