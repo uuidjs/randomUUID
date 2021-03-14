@@ -2,47 +2,37 @@
 // to Node.js license found at:
 // https://raw.githubusercontent.com/nodejs/node/master/LICENSE
 
-
 //
 // internal/errors
 //
-class ERR_INVALID_ARG_TYPE extends TypeError
-{
-  constructor(name, type, value)
-  {
-    super(`${name} variable is not of type ${type} (value: '${value}')`)
+class ERR_INVALID_ARG_TYPE extends TypeError {
+  constructor(name, type, value) {
+    super(`${name} variable is not of type ${type} (value: '${value}')`);
   }
 
-  code = 'ERR_INVALID_ARG_TYPE'
+  code = 'ERR_INVALID_ARG_TYPE';
 }
-
 
 //
 // internal/validators
 //
 
 function validateBoolean(value, name) {
-  if (typeof value !== 'boolean')
-    throw new ERR_INVALID_ARG_TYPE(name, 'boolean', value);
+  if (typeof value !== 'boolean') throw new ERR_INVALID_ARG_TYPE(name, 'boolean', value);
 }
 
 function validateObject(value, name) {
-  if (value === null ||
-      Array.isArray(value) ||
-      typeof value !== 'object') {
+  if (value === null || Array.isArray(value) || typeof value !== 'object') {
     throw new ERR_INVALID_ARG_TYPE(name, 'Object', value);
   }
-};
-
+}
 
 //
 // crypto
 //
 
-const randomFillSync = typeof window === 'undefined'
-  ? require('crypto').randomFillSync
-  : window.crypto.getRandomValues
-
+const randomFillSync =
+  typeof window === 'undefined' ? require('crypto').randomFillSync : window.crypto.getRandomValues;
 
 // Implements an RFC 4122 version 4 random UUID.
 // To improve performance, random data is generated in batches
@@ -50,10 +40,7 @@ const randomFillSync = typeof window === 'undefined'
 // and uuid buffers are reused. Each call to randomUUID() consumes
 // 16 bytes from the buffer.
 
-const kHexDigits = [
-  48, 49, 50, 51, 52, 53, 54, 55,
-  56, 57, 97, 98, 99, 100, 101, 102
-];
+const kHexDigits = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 97, 98, 99, 100, 101, 102];
 
 const kBatchSize = 128;
 let uuidData;
@@ -68,15 +55,12 @@ function getBufferedUUID() {
 
   if (uuidBatch === 0) randomFillSync(uuidData);
   uuidBatch = (uuidBatch + 1) % kBatchSize;
-  return uuidData.slice(uuidBatch * 16, (uuidBatch * 16) + 16);
+  return uuidData.slice(uuidBatch * 16, uuidBatch * 16 + 16);
 }
 
 function randomUUID(options) {
-  if (options !== undefined)
-    validateObject(options, 'options');
-  const {
-    disableEntropyCache = false,
-  } = { ...options };
+  if (options !== undefined) validateObject(options, 'options');
+  const { disableEntropyCache = false } = { ...options };
 
   validateBoolean(disableEntropyCache, 'options.disableEntropyCache');
 
@@ -91,8 +75,7 @@ function randomUUID(options) {
     uuidBuf = getBufferedUUID();
   } else {
     uuidBuf = uuidNotBuffered;
-    if (uuidBuf === undefined)
-      uuidBuf = uuidNotBuffered = new Uint8Array(16);
+    if (uuidBuf === undefined) uuidBuf = uuidNotBuffered = new Uint8Array(16);
     randomFillSync(uuidBuf);
   }
 
@@ -144,9 +127,8 @@ function randomUUID(options) {
   return String.fromCharCode.apply(null, uuid);
 }
 
-
 //
 // Export `randomUUID` function
 //
 
-module.exports = randomUUID
+module.exports = randomUUID;

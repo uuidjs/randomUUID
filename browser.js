@@ -1,1 +1,1 @@
-require('./polyfill')(window.crypto)
+require('./polyfill')(window.crypto);

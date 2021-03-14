@@ -1,9 +1,8 @@
-const crypto = require('crypto')
+const crypto = require('crypto');
 
+require('./polyfill')(crypto);
 
-require('./polyfill')(crypto)
+let { webcrypto } = crypto;
+if (!webcrypto) crypto.webcrypto = webcrypto = {};
 
-let {webcrypto} = crypto
-if(!webcrypto) crypto.webcrypto = webcrypto = {}
-
-if(!webcrypto.randomUUID) webcrypto.randomUUID = crypto.randomUUID
+if (!webcrypto.randomUUID) webcrypto.randomUUID = crypto.randomUUID;

@@ -1,3 +1,3 @@
-const {randomFillSync: getRandomValues, webcrypto} = require('crypto')
+const { randomFillSync: getRandomValues, webcrypto } = require('crypto');
 
-if(!window.crypto) window.crypto = webcrypto || {getRandomValues}
+if (!window.crypto) window.crypto = webcrypto || { getRandomValues };
