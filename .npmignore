@@ -1,0 +1,7 @@
+__tests__/
+coverage/
+jsdom/
+.babelrc.json
+.eslint*
+.prettierrc
+*.tgz

@@ -2,15 +2,54 @@
   "name": "randomuuid",
   "version": "0.1.0-alpha.0",
   "description": "Stub project for polyfilling `randomUUID` as proposed for standardization in https://github.com/WICG/uuid and implemented in Node.js v15.6.0 https://github.com/nodejs/node/pull/36729",
-  "main": "index.js",
+  "main": "node.js",
+  "browser": "browser.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "jest --coverage --notify"
   },
   "keywords": [
     "uuid",
     "guid",
     "rfc4122"
   ],
-  "author": "",
-  "license": "MIT"
+  "author": "Jesús Leganés-Combarro 'piranna' <piranna@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "^12.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/eslint-parser": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "browser-resolve": "^2.0.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "jest-cli": "^26.6.3",
+    "prettier": "^2.2.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "*.js"
+    ],
+    "projects": [
+      {
+        "displayName": "jsdom",
+        "resolver": "<rootDir>/jsdom/resolver.js",
+        "setupFiles": [
+          "<rootDir>/jsdom/jest.setup.js"
+        ]
+      },
+      {
+        "displayName": "node",
+        "testEnvironment": "node"
+      }
+    ]
+  }
 }
