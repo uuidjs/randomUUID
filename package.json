@@ -1,6 +1,6 @@
 {
   "name": "randomuuid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stub project for polyfilling `randomUUID` as proposed for standardization in https://github.com/WICG/uuid and implemented in Node.js v15.6.0 https://github.com/nodejs/node/pull/36729",
   "main": "node.js",
   "browser": "browser.js",
