@@ -32,7 +32,9 @@ function validateObject(value, name) {
 //
 
 const randomFillSync =
-  typeof window === 'undefined' ? require('crypto').randomFillSync : window.crypto.getRandomValues;
+  typeof window === 'undefined'
+    ? require('crypto').randomFillSync
+    : window.crypto.getRandomValues.bind(window.crypto);
 
 // Implements an RFC 4122 version 4 random UUID.
 // To improve performance, random data is generated in batches
